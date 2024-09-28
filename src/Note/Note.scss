@@ -1,7 +1,24 @@
+$off-color: #66555a;
+$on-color: #e03963;
+
+.noteButton {
+  height: 4rem;
+  width: 4rem;
+  background-color: $off-color;
+
+  &:hover {
+    background-color: $off-color;
+  }
+}
+
 .active {
-  background-color: yellowgreen;
+  background-color: $on-color;
+
+  &:hover {
+    background-color: $on-color;
+  }
 }
 
 .playing {
-  box-shadow: 0 0 10px 5px yellowgreen;
+  box-shadow: 0 0 10px 5px $on-color;
 }

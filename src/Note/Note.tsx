@@ -14,8 +14,8 @@ const Note = forwardRef((props: NoteProps, ref: ForwardedRef<unknown>) => {
   const noteLength_ms: number = 1000;
 
   // css hooks
-  const [playing, setPlaying] = useState(false);
-  const [active, setActive] = useState(false);
+  const [playingCSS, setPlayingCSS] = useState(false);
+  const [activeCSS, setActiveCSS] = useState(false);
 
   // audio setup
   gainNode.connect(props.merger);
@@ -29,30 +29,33 @@ const Note = forwardRef((props: NoteProps, ref: ForwardedRef<unknown>) => {
   oscNode.start();
 
   const playOneShot = (volume: number) => {
-    setPlaying(true);
+    // setPlayingCSS(true);
     gainNode.gain.setValueAtTime(volume, context.currentTime);
     setTimeout(() => {stop();}, noteLength_ms);
   }
 
   const stop = () => {
     gainNode.gain.setValueAtTime(0, context.currentTime);
-    setPlaying(false);
+    // setPlayingCSS(false);
   }
 
   const toggleActive = () => {
-    setActive(currentState => !currentState);
+    setActiveCSS(currentState => !currentState);
   }
 
   useImperativeHandle(ref, () => {
     return {
       play: () => {playOneShot(volume);},
       stop: () => {stop();},
-      active: active
+      active: activeCSS
     }
   });
 
   return (
-    <button onClick={() => {toggleActive(); stop();}} className={(active ? 'active ' : '') + (playing ? 'playing ' : '') }>helloRef</button>
+    <button
+      onClick={() => {toggleActive(); stop();}}
+      className={(activeCSS ? 'active ' : '') + (playingCSS ? 'playing ' : '') + ' noteButton'}
+    ></button>
   );
 });
 
