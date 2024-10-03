@@ -11,7 +11,7 @@ const Note = forwardRef((props: NoteProps, ref: ForwardedRef<unknown>) => {
   const volume = props.volume;
 
   // note settings
-  const noteLength_ms: number = 1000;
+  const noteLength_ms: number = 500;
 
   // css hooks
   const [playingCSS, setPlayingCSS] = useState(false);
@@ -29,14 +29,14 @@ const Note = forwardRef((props: NoteProps, ref: ForwardedRef<unknown>) => {
   oscNode.start();
 
   const playOneShot = (volume: number) => {
-    // setPlayingCSS(true);
+    setPlayingCSS(true);
     gainNode.gain.setValueAtTime(volume, context.currentTime);
     setTimeout(() => {stop();}, noteLength_ms);
   }
 
   const stop = () => {
+    setPlayingCSS(false);
     gainNode.gain.setValueAtTime(0, context.currentTime);
-    // setPlayingCSS(false);
   }
 
   const toggleActive = () => {

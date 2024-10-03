@@ -1,10 +1,13 @@
 $off-color: #66555a;
 $on-color: #e03963;
+$border-color: #2c2a2b;
+$border-color-on: #962b46;
 
 .noteButton {
   height: 4rem;
   width: 4rem;
   background-color: $off-color;
+  border: 2px solid $border-color;
 
   &:hover {
     background-color: $off-color;
@@ -21,4 +24,5 @@ $on-color: #e03963;
 
 .playing {
   box-shadow: 0 0 10px 5px $on-color;
+  border: 2px solid $border-color-on;
 }
